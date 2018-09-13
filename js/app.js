@@ -13,6 +13,8 @@ let min = document.querySelector('#minutes');
 let sec = document.querySelector('#seconds');
 const play = document.querySelector('#play');
 
+let setTimer = true;
+
 // Array to hold all the classes of the icons.
 let allClasses = [];
 
@@ -105,8 +107,9 @@ function scoreMsg() {
 }
 // if all the cards are matched, show the modal.
 function endGame() {
-    if(matchedCards.length === 16){
-        clearInterval(runTimer);
+    if(matchedCards.length === 2){
+        let stoptime = startTimer();
+        stoptime();
         showModal();
     }
 }
@@ -125,9 +128,6 @@ function configTime(){
     sec.textContent = checkTime(seconds%60);
     min.textContent = checkTime(parseInt(seconds/60,10));
 }
-
-// start timer
-var runTimer = setInterval(configTime,1000);
 
 //Decrease the star rating after some number of moves.
 const stars_list = stars.children;
@@ -189,6 +189,7 @@ function openCard(event) {
 
 //open and show clicked card if it is not yet open.
 function flipCard(evt) {
+    startTimer();
     if(!evt.target.classList.contains('open')){
         evt.target.classList.add('show','open');
         openCard(evt);
@@ -203,17 +204,18 @@ allCards.forEach(function (value) {
 
 //reset
 function startGame (){
+    let stoptime = startTimer();
+    stoptime();
+    setTimer = true;
     for(let star of stars_list){
         star.removeAttribute("style", "visibility: hidden");
     }
     count = 0;
     seconds = 0;
-    clearInterval(runTimer);
     sec.textContent = '';
     min.textContent = '';
     sec.textContent = `0${Number('0')}`;
     min.textContent = `0${Number('0')}`;
-    setInterval(configTime,1000);
     moves.textContent = `${count}`;
     allCards.forEach(function (value) {
         value.classList.remove('open','show','match');
@@ -224,3 +226,15 @@ function startGame (){
     reShuffle();
 }
 restart.addEventListener('click',startGame);
+
+function startTimer(){
+    if(setTimer){
+        // start timer
+        var runTimer = setInterval(configTime,1000);
+        setTimer = false;
+    }
+    var stopTime = function(){
+        clearInterval(runTimer);
+    }
+    return stopTime;
+}
