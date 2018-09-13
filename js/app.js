@@ -96,9 +96,9 @@ function showModal() {
 // message to display on the modal depending on the numbers of moves.
 let msg = '';
 function scoreMsg() {
-    if (count < 2) {
+    if (count < 10) {
         msg = "Congratulations";
-    } else if(count > 2 && count <= 5){
+    } else if(count > 10 && count <= 16){
         msg = "Nice try";
     }else{
         msg = "You can do better!";
@@ -107,9 +107,8 @@ function scoreMsg() {
 }
 // if all the cards are matched, show the modal.
 function endGame() {
-    if(matchedCards.length === 2){
-        let stoptime = startTimer();
-        stoptime();
+    if(matchedCards.length === 16){
+        stopTime();
         showModal();
     }
 }
@@ -204,8 +203,7 @@ allCards.forEach(function (value) {
 
 //reset
 function startGame (){
-    let stoptime = startTimer();
-    stoptime();
+    stopTime();
     setTimer = true;
     for(let star of stars_list){
         star.removeAttribute("style", "visibility: hidden");
@@ -227,14 +225,15 @@ function startGame (){
 }
 restart.addEventListener('click',startGame);
 
+let runTimer;
 function startTimer(){
     if(setTimer){
         // start timer
-        var runTimer = setInterval(configTime,1000);
+        runTimer = setInterval(configTime,1000);
         setTimer = false;
     }
-    var stopTime = function(){
-        clearInterval(runTimer);
-    }
-    return stopTime;
+}
+
+let stopTime = function(){
+    clearInterval(runTimer);
 }
