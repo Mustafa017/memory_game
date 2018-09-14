@@ -4,6 +4,7 @@ https://mustafa017.github.io/memory_game/
 ## Table of Contents
 
 * [Instructions](#instructions)
+* [How to Play](#how_to_play)
 * [Dependencies](#dependencies)
 * [Contributing](#contributing)
 
