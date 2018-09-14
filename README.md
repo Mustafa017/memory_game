@@ -4,6 +4,8 @@ https://mustafa017.github.io/memory_game/
 ## Table of Contents
 
 * [Instructions](#instructions)
+* [How To Play](#How to Play)
+* [Dependencies](#dependencies)
 * [Contributing](#contributing)
 
 ## Instructions
@@ -14,6 +16,18 @@ It is created using pure Javascript.
 To see the app's functionality, open `js/app.js`.
 
 For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+
+## How to Play
+
+![Gif](img/recording(7).webm);
+
+The matching game involves trying to recall where you last saw a specific card and match it to the currently opened card. You can only open two cards at ones, if the opened cards match, the are given a green background color and they remain opened. But if they do not match, the are given a red background, then shake to indicate wrongly selected and then they are flipped back. The Move counter increments after two cards are opened.
+
+The aim of the game is to see how well you can recall the positions of the cards within the shortest time and having used the fewest number of moves. After which the system gives you some rating at the end of the game. Remember the cards are shuffled everytime you reset the game. Have Fun!!!
+
+## Dependencies
+
+* [Bootstrap](https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css)
 
 ## Contributing
 
