@@ -176,23 +176,19 @@ function checkMatch(event) {
     }
 }
 
-//open the clicked card and put it in a temporary array that holds opened cards.
-function openCard(event) {
-    const clickedCard = event.target;
-    //check if the click is the right target (a LI element).
-    if(clickedCard.nodeName === 'LI') {
-        openedCards.push(clickedCard);
-    }
-    checkMatch(event);
-}
-
 //open and show clicked card if it is not yet open.
 function flipCard(evt) {
     startTimer();
-    if(!evt.target.classList.contains('open')){
-        evt.target.classList.add('show','open');
-        openCard(evt);
+    const clickedCard = event.target;
+    //check if the click is the right target (a LI element).
+    if(clickedCard.nodeName === 'LI') {
+        //open the clicked card and put it in a temporary array that holds opened cards.
+        if(!clickedCard.classList.contains('open')){
+            clickedCard.classList.add('show','open');
+            openedCards.push(clickedCard);
+        }
     }
+    checkMatch(event);
 }
 
 //A temporary array to hold opened cards.
